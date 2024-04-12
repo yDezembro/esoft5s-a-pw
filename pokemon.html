@@ -1,35 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>Document</title>
-</head>
-
-<body>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página do Pokémon Squirtle</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header id="header">
-        <h1 id="page-title">Página do </h1>
+      <h1></h1>
     </header>
+  </body>
+  <main>
+    <section id="info-squirtle" aria-labelledby="info-squirtle-label">
+      <h2 id="info-squirtle-label"></h2>
+      <div>
+        <img
+         
+        />
+      </div>
+    </section>
+  </main>
 
-    <main>
-        <section class="section-img">
-            <h2 id="poke-info">Informações sobre</h2>
-            <div id="evo-img" class="evo-img"></div>
-        </section>
-    </main>
+  <footer aria-label="Rodapé">
+    <p aria-label="Copyright">
+      &copy; 2024 Página do Pokémon Squirtle. Todos os direitos reservados.
+    </p>
+    <p><a href="#header">Voltar para o topo</a></p>
+    <p><a href="mailto:contato@squirtlepage.com">Contato via e-mail</a></p>
+    <p><a href="tel:+5555555555">Telefone: (55) 5555-5555</a></p>
+  </footer>
 
-    <footer aria-label="Rodapé">
-        <p class="copyright" aria-label="Copyright">
-            &copy; 2024 Página do Pokémon Squirtle. Todos os direitos reservados.
-        </p>
-        <p><a href="#header">Voltar para o topo</a></p>
-        <p><a href="mailto:contato@squirtlepage.com">Contato via e-mail</a></p>
-        <p><a href="tel:+5555555555">Telefone: (55) 5555-5555</a></p>
-    </footer>
 
-    <script src="./index.js"></script>
-</body>
 
-</html>
+<script>
+    const urlParams = new URLSearchParams(location.search);
+    const nome = urlParams.get('name').toLowerCase();
+    document.title = nome;
+
+    const h1 = document.querySelector('h1');
+    h1.textContent = `Pagina do ${nome}`;
+    const h2 = document.querySelector('h2');
+    h2.textContent = `Informações sobre ${nome}`;
+    const img = document.querySelector('img');
+
+   
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
+        .then(res => 
+            res.json()
+        .then(data => {
+          img.src = data.sprites.front_default
+          img.alt = `Imagem do Pokémon ${nome}`
+          
+        }
+
+        ))
+
+
+</script>
